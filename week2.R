@@ -67,3 +67,24 @@ created
 # Writing and Reading chunks
         h5write(c(12,13,14), "example.h5","foo/A", index= list(1:3,1))
         h5read("example.h5","foo/A")
+###-------------Reading from the web---------
+#  http://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en
+# Getting data off webpages - readLines()
+        con = url("http://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en")
+        htmlCode = readLines(con)
+        close(con)
+        htmlCode
+
+# Parsing XML
+        library(XML)
+        url <- "http://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en"
+        html <- htmlTreeParse(url, useInternalNodes = TRUE)
+
+        xpathSApply(html, "//title", xmlValue)
+# the html tag was change to this...
+        xpathSApply(html, "//td[@class='gsc_a_c']", xmlValue)
+
+# GET from httr package
+        library(httr)
+        html2 = get(url)
+        content2
