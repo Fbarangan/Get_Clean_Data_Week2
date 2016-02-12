@@ -103,3 +103,11 @@ pg2
         pg1 = GET(handle=google, path="/")
         pg2 = GET(handle=google, path="search")
 
+# Reading from API
+        myapp = oauth_app("twitter",
+                          key = "",
+                          secret = ""  )
+        sig = sign_oauth1.0(myapp,
+                            token = "",
+                            token_secret = "" )
+        homeTL = GET("", sig)
